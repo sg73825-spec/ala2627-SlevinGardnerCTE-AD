@@ -43,20 +43,20 @@
 }
 
 :root[data-theme='futurepunk'] {
-  --ink: #fff7fd;
-  --muted: #d0b9d6;
-  --faint: #806d8a;
-  --bg: #12081b;
-  --panel: #1e0e2b;
-  --panel-bright: #32134a;
-  --line: #653b80;
-  --acid: #eaff55;
-  --aqua: #54f4ff;
-  --orange: #ff56c9;
-  --danger: #ff765e;
-  --grid-line: rgba(234, 255, 85, .04);
-  --glow: rgba(255, 86, 201, .2);
-  --command-bg: #160b20;
+  --ink: #f2efe9;
+  --muted: #c5c0b7;
+  --faint: #827d77;
+  --bg: #0d1117;
+  --panel: #141d25;
+  --panel-bright: #1f2c36;
+  --line: #394e5b;
+  --acid: #d8d1a5;
+  --aqua: #86c7d8;
+  --orange: #d38a64;
+  --danger: #d7747b;
+  --grid-line: rgba(134, 199, 216, .04);
+  --glow: rgba(134, 199, 216, .15);
+  --command-bg: #101820;
   --font-body: 'GorDIN', monospace;
   --font-mono: 'GorDIN', monospace;
 }
@@ -118,6 +118,110 @@ body {
   background-size: 4rem 4rem, 4rem 4rem, auto, auto;
   color: var(--ink);
   font: 16px/1.55 var(--font-body);
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 5rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  color: var(--acid);
+}
+
+.masthead h1 {
+  max-width: 12ch;
+}
+
+.masthead h1 em {
+  color: var(--acid);
+  font-style: normal;
+}
+
+.about-section,
+.now-section,
+.work-section {
+  display: grid;
+  grid-template-columns: minmax(12rem, .8fr) 1.2fr;
+  gap: 3rem;
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-label,
+.project-number {
+  color: var(--acid);
+  font-size: .72rem;
+  letter-spacing: .14em;
+}
+
+.about-copy {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.25rem;
+}
+
+.now-list p {
+  margin: 0;
+  padding: .9rem 0;
+  border-bottom: 1px dashed var(--line);
+}
+
+.now-list span {
+  display: inline-block;
+  width: 3rem;
+  color: var(--faint);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 16rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform .2s ease, border-color .2s ease;
+}
+
+.project-card:hover {
+  border-color: var(--acid);
+  transform: translateY(-.25rem);
+}
+
+.project-card h3 {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+}
+
+.project-card p {
+  color: var(--muted);
+}
+
+.project-link {
+  margin-top: auto;
+  color: var(--aqua);
 }
 
 body::before {
@@ -477,7 +581,7 @@ input:focus {
 }
 
 .theme-swatch--futurepunk {
-  background: linear-gradient(135deg, #ff56c9, #54f4ff, #eaff55);
+  background: linear-gradient(135deg, #d38a64, #86c7d8, #d8d1a5);
 }
 
 .theme-swatch--matrix {
@@ -663,40 +767,40 @@ h2 {
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(4n + 1) {
-  border-top: 2px solid #ff56c9;
-  box-shadow: 0 0 1.5rem rgba(255, 86, 201, .12);
+  border-top: 2px solid #d38a64;
+  box-shadow: 0 0 1.5rem rgba(211, 138, 100, .12);
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(4n + 2) {
-  border-top: 2px solid #54f4ff;
-  box-shadow: 0 0 1.5rem rgba(84, 244, 255, .12);
+  border-top: 2px solid #86c7d8;
+  box-shadow: 0 0 1.5rem rgba(134, 199, 216, .12);
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(4n + 3) {
-  border-top: 2px solid #eaff55;
-  box-shadow: 0 0 1.5rem rgba(234, 255, 85, .1);
+  border-top: 2px solid #d8d1a5;
+  box-shadow: 0 0 1.5rem rgba(216, 209, 165, .1);
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(4n) {
-  border-top: 2px solid #ff765e;
-  box-shadow: 0 0 1.5rem rgba(255, 118, 94, .12);
+  border-top: 2px solid #d7747b;
+  box-shadow: 0 0 1.5rem rgba(215, 116, 123, .12);
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(odd) .tag {
-  color: #54f4ff;
-  border-color: #54f4ff;
+  color: #86c7d8;
+  border-color: #86c7d8;
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(even) .tag {
-  color: #ff56c9;
-  border-color: #ff56c9;
+  color: #d38a64;
+  border-color: #d38a64;
 }
 
 :root[data-theme='futurepunk'] body {
   background:
-    radial-gradient(circle at 12% 18%, rgba(84, 244, 255, .12), transparent 25rem),
-    radial-gradient(circle at 88% 38%, rgba(255, 86, 201, .16), transparent 28rem),
-    radial-gradient(circle at 42% 92%, rgba(234, 255, 85, .1), transparent 24rem),
+    radial-gradient(circle at 12% 18%, rgba(134, 199, 216, .12), transparent 25rem),
+    radial-gradient(circle at 88% 38%, rgba(211, 138, 100, .14), transparent 28rem),
+    radial-gradient(circle at 42% 92%, rgba(216, 209, 165, .08), transparent 24rem),
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px), var(--bg);
   background-size: auto, auto, auto, 4rem 4rem, 4rem 4rem, auto;
@@ -707,36 +811,36 @@ h2 {
 :root[data-theme='futurepunk'] h3,
 :root[data-theme='futurepunk'] .section-label,
 :root[data-theme='futurepunk'] .kicker {
-  text-shadow: 0 0 1.2rem rgba(84, 244, 255, .3), 0 0 .35rem currentColor;
+  text-shadow: 0 0 1.1rem rgba(134, 199, 216, .22), 0 0 .35rem currentColor;
 }
 
 :root[data-theme='futurepunk'] .panel,
 :root[data-theme='futurepunk'] .control-deck,
 :root[data-theme='futurepunk'] .theme-bar,
 :root[data-theme='futurepunk'] .workflow-band {
-  border-color: rgba(84, 244, 255, .4);
-  box-shadow: 0 0 2rem rgba(255, 86, 201, .08);
+  border-color: rgba(134, 199, 216, .38);
+  box-shadow: 0 0 2rem rgba(211, 138, 100, .08);
 }
 
 :root[data-theme='futurepunk'] .command-card {
-  background: linear-gradient(145deg, rgba(50, 19, 74, .9), rgba(22, 11, 32, .94));
-  box-shadow: inset 0 0 2rem rgba(84, 244, 255, .05), 0 0 1.5rem rgba(255, 86, 201, .08);
+  background: linear-gradient(145deg, rgba(20, 29, 37, .92), rgba(14, 19, 26, .96));
+  box-shadow: inset 0 0 2rem rgba(134, 199, 216, .04), 0 0 1.5rem rgba(211, 138, 100, .06);
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(4n + 1) {
-  box-shadow: inset 0 0 2rem rgba(255, 86, 201, .06), 0 0 1.5rem rgba(255, 86, 201, .15);
+  box-shadow: inset 0 0 2rem rgba(211, 138, 100, .05), 0 0 1.5rem rgba(211, 138, 100, .12);
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(4n + 2) {
-  box-shadow: inset 0 0 2rem rgba(84, 244, 255, .06), 0 0 1.5rem rgba(84, 244, 255, .15);
+  box-shadow: inset 0 0 2rem rgba(134, 199, 216, .05), 0 0 1.5rem rgba(134, 199, 216, .12);
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(4n + 3) {
-  box-shadow: inset 0 0 2rem rgba(234, 255, 85, .05), 0 0 1.5rem rgba(234, 255, 85, .12);
+  box-shadow: inset 0 0 2rem rgba(216, 209, 165, .04), 0 0 1.5rem rgba(216, 209, 165, .1);
 }
 
 :root[data-theme='futurepunk'] .command-card:nth-child(4n) {
-  box-shadow: inset 0 0 2rem rgba(255, 118, 94, .06), 0 0 1.5rem rgba(255, 118, 94, .14);
+  box-shadow: inset 0 0 2rem rgba(215, 116, 123, .05), 0 0 1.5rem rgba(215, 116, 123, .12);
 }
 
 :root[data-theme='futurepunk'] input,
@@ -745,17 +849,17 @@ h2 {
 :root[data-theme='futurepunk'] .copy-button,
 :root[data-theme='futurepunk'] .command-line,
 :root[data-theme='futurepunk'] .workflow-copy code {
-  border-color: rgba(84, 244, 255, .5);
-  box-shadow: 0 0 .9rem rgba(84, 244, 255, .08);
+  border-color: rgba(134, 199, 216, .45);
+  box-shadow: 0 0 .9rem rgba(134, 199, 216, .08);
 }
 
 :root[data-theme='futurepunk'] .theme-button:hover,
 :root[data-theme='futurepunk'] .theme-button.is-active,
 :root[data-theme='futurepunk'] .filter-button:hover,
 :root[data-theme='futurepunk'] .filter-button.is-active {
-  border-color: #eaff55;
-  background: rgba(234, 255, 85, .12);
-  box-shadow: 0 0 1.2rem rgba(234, 255, 85, .18);
+  border-color: #d8d1a5;
+  background: rgba(216, 209, 165, .12);
+  box-shadow: 0 0 1.2rem rgba(216, 209, 165, .15);
   text-shadow: 0 0 .7rem currentColor;
 }
 
@@ -945,6 +1049,27 @@ footer span {
 @media (max-width: 700px) {
   .site-shell {
     width: min(100% - 1.25rem, 78rem);
+  }
+
+  .top-nav {
+    margin-bottom: 3.5rem;
+  }
+
+  .nav-links {
+    gap: .8rem;
+    font-size: .82rem;
+  }
+
+  .about-section,
+  .now-section,
+  .work-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 3rem 0;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
   }
 
   .status-line {

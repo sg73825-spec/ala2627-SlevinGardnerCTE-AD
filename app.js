@@ -44,11 +44,12 @@ const pageNote = document.querySelector('#page-note');
 const pageButtons = document.querySelector('#page-buttons');
 const themeOptions = document.querySelector('#theme-options');
 const matrixCanvas = document.querySelector('#matrix-rain');
-const matrixContext = matrixCanvas.getContext('2d');
+const matrixContext = matrixCanvas ? matrixCanvas.getContext('2d') : null;
 const glitchCanvas = document.querySelector('#glitch-background');
-const glitchContext = glitchCanvas.getContext('2d');
+const glitchContext = glitchCanvas ? glitchCanvas.getContext('2d') : null;
 const rickStream = document.querySelector('#rick-stream');
 const futureCity = document.querySelector('#future-city');
+const hasCommandLibrary = Boolean(grid && search && filters && emptyState && resultCount && pageNote && pageButtons);
 let activeFilter = 'all';
 let activePage = 1;
 const pageNames = {
@@ -97,6 +98,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 function resizeMatrix() {
+  if (!matrixCanvas || !matrixContext) return;
   const ratio = window.devicePixelRatio || 1;
   matrixCanvas.width = window.innerWidth * ratio;
   matrixCanvas.height = window.innerHeight * ratio;
@@ -104,6 +106,7 @@ function resizeMatrix() {
 }
 
 function drawMatrix() {
+  if (!matrixCanvas || !matrixContext) return;
   const width = window.innerWidth;
   const height = window.innerHeight;
   matrixContext.fillStyle = 'rgba(2, 11, 5, .11)';
@@ -131,6 +134,7 @@ const matrixColumns = Array.from({ length: Math.ceil(window.innerWidth / matrixC
 }));
 
 function setMatrixState(isActive) {
+  if (!matrixCanvas || !matrixContext) return;
   if (isActive && !matrixAnimation) drawMatrix();
   if (!isActive && matrixAnimation) {
     cancelAnimationFrame(matrixAnimation);
@@ -140,6 +144,7 @@ function setMatrixState(isActive) {
 }
 
 function resizeGlitch() {
+  if (!glitchCanvas || !glitchContext) return;
   const ratio = window.devicePixelRatio || 1;
   glitchCanvas.width = window.innerWidth * ratio;
   glitchCanvas.height = window.innerHeight * ratio;
@@ -147,6 +152,7 @@ function resizeGlitch() {
 }
 
 function drawGlitch(time = 0) {
+  if (!glitchCanvas || !glitchContext) return;
   const width = window.innerWidth;
   const height = window.innerHeight;
   const phase = time / 1000;
@@ -199,6 +205,7 @@ function drawGlitch(time = 0) {
 }
 
 function setGlitchState(isActive) {
+  if (!glitchCanvas || !glitchContext) return;
   if (isActive && !glitchAnimation) drawGlitch();
   if (!isActive && glitchAnimation) {
     cancelAnimationFrame(glitchAnimation);
@@ -209,11 +216,13 @@ function setGlitchState(isActive) {
 
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  themeOptions.querySelectorAll('[data-theme]').forEach((button) => {
-    const isActive = button.dataset.theme === theme;
-    button.classList.toggle('is-active', isActive);
-    button.setAttribute('aria-pressed', String(isActive));
-  });
+  if (themeOptions) {
+    themeOptions.querySelectorAll('[data-theme]').forEach((button) => {
+      const isActive = button.dataset.theme === theme;
+      button.classList.toggle('is-active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+  }
   localStorage.setItem('cmd-library-theme', theme);
   setMatrixState(theme === 'matrix');
   setGlitchState(theme === 'greyscale');
@@ -221,6 +230,7 @@ function setTheme(theme) {
 }
 
 function render() {
+  if (!hasCommandLibrary) return;
   const query = search.value.trim().toLowerCase();
   const pageCommands = commands.filter((item) => item.page === activePage);
   filters.querySelectorAll('[data-filter]').forEach((button) => {
@@ -254,49 +264,69 @@ function render() {
   `).join('');
 }
 
-filters.addEventListener('click', (event) => {
-  const button = event.target.closest('[data-filter]');
-  if (!button) return;
-  activeFilter = button.dataset.filter;
-  activePage = 1;
-  filters.querySelectorAll('.filter-button').forEach((item) => item.classList.toggle('is-active', item === button));
-  render();
-});
-pageButtons.addEventListener('click', (event) => {
-  const button = event.target.closest('[data-page]');
-  if (!button) return;
-  activePage = Number(button.dataset.page);
-  render();
-  document.querySelector('.library-heading').scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-search.addEventListener('input', render);
-grid.addEventListener('click', async (event) => {
-  const button = event.target.closest('.copy-button');
-  if (!button) return;
-  const command = decodeURIComponent(button.dataset.command);
-  try {
-    await navigator.clipboard.writeText(command);
-    button.textContent = 'COPIED';
-    setTimeout(() => { button.textContent = 'COPY'; }, 1300);
-  } catch {
-    button.textContent = 'SELECT';
-  }
-});
-document.addEventListener('keydown', (event) => {
-  if (event.key === '/' && document.activeElement !== search) {
-    event.preventDefault();
-    search.focus();
-  }
-});
+if (filters) {
+  filters.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-filter]');
+    if (!button) return;
+    activeFilter = button.dataset.filter;
+    activePage = 1;
+    filters.querySelectorAll('.filter-button').forEach((item) => item.classList.toggle('is-active', item === button));
+    render();
+  });
+}
 
-themeOptions.addEventListener('click', (event) => {
-  const button = event.target.closest('[data-theme]');
-  if (button) setTheme(button.dataset.theme);
-});
+if (pageButtons) {
+  pageButtons.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-page]');
+    if (!button) return;
+    activePage = Number(button.dataset.page);
+    render();
+    document.querySelector('.library-heading')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
 
-render();
+if (search) {
+  search.addEventListener('input', render);
+}
+
+if (grid) {
+  grid.addEventListener('click', async (event) => {
+    const button = event.target.closest('.copy-button');
+    if (!button) return;
+    const command = decodeURIComponent(button.dataset.command);
+    try {
+      await navigator.clipboard.writeText(command);
+      button.textContent = 'COPIED';
+      setTimeout(() => { button.textContent = 'COPY'; }, 1300);
+    } catch {
+      button.textContent = 'SELECT';
+    }
+  });
+}
+
+if (search) {
+  document.addEventListener('keydown', (event) => {
+    if (event.key === '/' && document.activeElement !== search) {
+      event.preventDefault();
+      search.focus();
+    }
+  });
+}
+
+if (themeOptions) {
+  themeOptions.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-theme]');
+    if (button) setTheme(button.dataset.theme);
+  });
+}
+
+if (hasCommandLibrary) {
+  render();
+}
 setTheme(localStorage.getItem('cmd-library-theme') || 'default');
-loadRickStream().then(() => setRickState(document.documentElement.dataset.theme === 'default'));
+if (rickStream) {
+  loadRickStream().then(() => setRickState(document.documentElement.dataset.theme === 'default'));
+}
 resizeMatrix();
 resizeGlitch();
 window.addEventListener('resize', () => {

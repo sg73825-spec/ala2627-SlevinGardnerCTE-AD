@@ -99,6 +99,25 @@
   --font-mono: 'GorDIN', monospace;
 }
 
+:root[data-theme='portal'] {
+  --ink: #ebf7ff;
+  --muted: #b4d6ec;
+  --faint: #708aa3;
+  --bg: #040b13;
+  --panel: #0d1721;
+  --panel-bright: #152739;
+  --line: #2a4a63;
+  --acid: #7ef9d6;
+  --aqua: #8eceff;
+  --orange: #f8a25a;
+  --danger: #ff7b9c;
+  --grid-line: rgba(126, 249, 214, .025);
+  --glow: rgba(142, 206, 255, .15);
+  --command-bg: #08151e;
+  --font-body: 'GorDIN', monospace;
+  --font-mono: 'GorDIN', monospace;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -283,8 +302,25 @@ body::before {
   transition: opacity 350ms ease;
 }
 
+.portal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, rgba(126, 249, 214, .24) 0%, rgba(126, 249, 214, .1) 14%, rgba(6, 17, 27, .72) 26%, rgba(4, 11, 19, .9) 58%, rgba(4, 11, 19, 1) 100%),
+    radial-gradient(circle at center, rgba(142, 206, 255, .4) 0%, transparent 38%),
+    linear-gradient(180deg, rgba(8, 21, 30, .6), rgba(4, 11, 19, .9));
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
 :root[data-theme='halflife'] .halflife-backdrop {
   opacity: .86;
+}
+
+:root[data-theme='portal'] .portal-backdrop {
+  opacity: 1;
 }
 
 :root[data-theme='futurepunk'] .future-city {
@@ -582,6 +618,10 @@ input:focus {
 
 .theme-swatch--futurepunk {
   background: linear-gradient(135deg, #d38a64, #86c7d8, #d8d1a5);
+}
+
+.theme-swatch--portal {
+  background: linear-gradient(135deg, #7ef9d6, #8eceff, #f8a25a);
 }
 
 .theme-swatch--matrix {

@@ -73,7 +73,7 @@ function toggleMusic() {
     musicToggle.textContent = 'PLAY SONG';
     return;
   }
-  musicPlayer.innerHTML = '<iframe title="Midge Ure - The Man Who Sold The World" src="https://www.youtube.com/embed/mXHKjFKBC0g?autoplay=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>';
+  musicPlayer.innerHTML = '<iframe title="Cynthia Harrell - Snake Eater" src="https://www.youtube.com/embed/m2OR_JaXDaM?autoplay=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>';
   musicToggle.setAttribute('aria-pressed', 'true');
   musicToggle.textContent = 'STOP SONG';
 }

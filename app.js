@@ -48,7 +48,6 @@ const matrixContext = matrixCanvas ? matrixCanvas.getContext('2d') : null;
 const glitchCanvas = document.querySelector('#glitch-background');
 const glitchContext = glitchCanvas ? glitchCanvas.getContext('2d') : null;
 const rickStream = document.querySelector('#rick-stream');
-const futureCity = document.querySelector('#future-city');
 const hasCommandLibrary = Boolean(grid && search && filters && emptyState && resultCount && pageNote && pageButtons);
 let activeFilter = 'all';
 let activePage = 1;
@@ -62,7 +61,6 @@ let glitchAnimation;
 let rickAnimation;
 let rickFrames = [];
 let rickFrameIndex = 0;
-let cityScrollFrame;
 
 async function loadRickStream() {
   try {
@@ -87,15 +85,6 @@ function setRickState(isActive) {
     rickAnimation = undefined;
   }
 }
-
-function updateFutureCity() {
-  cityScrollFrame = undefined;
-  futureCity.style.setProperty('--city-scroll', `${window.scrollY * -.22}px`);
-}
-
-window.addEventListener('scroll', () => {
-  if (!cityScrollFrame) cityScrollFrame = requestAnimationFrame(updateFutureCity);
-}, { passive: true });
 
 function resizeMatrix() {
   if (!matrixCanvas || !matrixContext) return;
@@ -160,14 +149,14 @@ function drawGlitch(time = 0) {
 
   for (let index = 0; index < 900; index += 1) {
     const shade = 80 + Math.floor(Math.random() * 150);
-    glitchContext.fillStyle = `rgba(${shade}, ${shade}, ${shade}, ${Math.random() * .18})`;
+    glitchContext.fillStyle = `rgba(${Math.min(255, shade + 20)}, ${Math.max(0, shade - 4)}, ${Math.max(0, shade - 18)}, ${Math.random() * .18})`;
     const x = Math.random() * width;
     const y = Math.random() * height;
     const size = Math.random() > .92 ? 3 : 1;
     glitchContext.fillRect(x, y, size + Math.random() * 4, size);
   }
 
-  glitchContext.fillStyle = 'rgba(255, 255, 255, .045)';
+  glitchContext.fillStyle = 'rgba(224, 122, 46, .045)';
   for (let y = (phase * 38) % 8; y < height; y += 8) glitchContext.fillRect(0, y, width, 1);
 
   const scale = Math.min(width, height) / 650;
@@ -175,8 +164,8 @@ function drawGlitch(time = 0) {
   const figureY = height * .51;
   const jitter = () => (Math.random() - .5) * 7;
   glitchContext.lineWidth = Math.max(1, scale * 1.3);
-  glitchContext.strokeStyle = 'rgba(235, 235, 235, .23)';
-  glitchContext.shadowColor = 'rgba(255, 255, 255, .2)';
+  glitchContext.strokeStyle = 'rgba(231, 225, 210, .23)';
+  glitchContext.shadowColor = 'rgba(213, 107, 44, .2)';
   glitchContext.shadowBlur = 7;
 
   const line = (points) => {

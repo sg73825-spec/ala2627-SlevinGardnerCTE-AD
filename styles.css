@@ -360,8 +360,9 @@ body::before {
     linear-gradient(90deg, transparent 0 18%, rgba(4, 5, 5, .55) 18.2% 20%, transparent 20.2% 79.8%, rgba(4, 5, 5, .55) 80% 81.8%, transparent 82%),
     repeating-linear-gradient(0deg, rgba(166, 177, 159, .08) 0 1px, transparent 1px 4rem),
     radial-gradient(ellipse at 50% 18%, rgba(213, 107, 44, .16), transparent 32rem),
+    url('https://cdn.mos.cms.futurecdn.net/F95LHZpNYpnhuKvLTg9MAQ-2560-80.jpg') center / cover no-repeat,
     var(--bg);
-  background-size: auto, auto, auto, 100% 4rem, auto, auto;
+  background-size: auto, auto, auto, 100% 4rem, auto, cover, auto;
 }
 
 :root[data-theme='greyscale'] .masthead::before,

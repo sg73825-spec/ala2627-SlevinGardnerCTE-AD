@@ -5,20 +5,20 @@
 }
 
 :root {
-  --ink: #e9f4e9;
-  --muted: #8da294;
-  --faint: #52665a;
-  --bg: #07100f;
-  --panel: #0d1a16;
-  --panel-bright: #12231d;
-  --line: #294337;
-  --acid: #00ff00;
-  --aqua: #70e6c0;
-  --orange: #ffad68;
-  --danger: #ff826e;
-  --grid-line: rgba(0, 255, 0, .025);
-  --glow: rgba(112, 230, 192, .09);
-  --command-bg: #08120f;
+  --ink: #e7e2c8;
+  --muted: #a4a789;
+  --faint: #697052;
+  --bg: #11150f;
+  --panel: #1a2015;
+  --panel-bright: #29331e;
+  --line: #566044;
+  --acid: #d8c37a;
+  --aqua: #b4c98b;
+  --orange: #e5a04d;
+  --danger: #d77c54;
+  --grid-line: rgba(216, 195, 122, .035);
+  --glow: rgba(180, 201, 139, .1);
+  --command-bg: #0b0e0a;
   --font-body: 'GorDIN', monospace;
   --font-mono: 'GorDIN', monospace;
 }
@@ -284,11 +284,28 @@ body::before {
   transition: opacity 350ms ease;
 }
 
+.mgs-ladder-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 11, 7, .84), rgba(21, 27, 14, .34) 50%, rgba(8, 11, 7, .8)),
+    linear-gradient(180deg, rgba(10, 13, 8, .28), rgba(10, 13, 8, .86)),
+    url('https://media.tenor.com/M1zaUPdknekAAAAM/metal-gear.gif') center / cover no-repeat;
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
 :root[data-theme='halflife'] .halflife-backdrop {
   opacity: .86;
 }
 
 :root[data-theme='portal'] .portal-backdrop {
+  opacity: 1;
+}
+
+:root[data-theme='default'] .mgs-ladder-backdrop {
   opacity: 1;
 }
 
@@ -600,6 +617,55 @@ input:focus {
   color: var(--muted);
   cursor: pointer;
   font: .68rem var(--font-mono);
+}
+
+.music-control {
+  display: flex;
+  align-items: end;
+  gap: .7rem;
+}
+
+.music-control .control-label {
+  margin: 0;
+}
+
+.music-button {
+  padding: .5rem .65rem;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: rgba(9, 12, 7, .72);
+  color: var(--acid);
+  cursor: pointer;
+  font: .68rem var(--font-mono);
+}
+
+.music-button:hover,
+.music-button[aria-pressed='true'] {
+  border-color: var(--acid);
+  background: color-mix(in srgb, var(--acid) 14%, transparent);
+}
+
+.music-player {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.music-player iframe {
+  border: 0;
+}
+
+:root[data-theme='default'] .theme-bar {
+  border-color: rgba(216, 195, 122, .48);
+  background: rgba(10, 14, 8, .5);
+}
+
+:root[data-theme='default'] .theme-note,
+:root[data-theme='default'] .status-line,
+:root[data-theme='default'] .kicker {
+  color: var(--aqua);
 }
 
 .theme-button:hover,
@@ -1066,6 +1132,21 @@ footer span {
   .theme-bar {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .theme-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .theme-options {
+    justify-content: start;
+  }
+
+  .music-control {
+    align-items: start;
+    flex-direction: column;
+    gap: .5rem;
   }
 
   .command-grid {

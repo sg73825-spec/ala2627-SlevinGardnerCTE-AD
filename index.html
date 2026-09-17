@@ -17,6 +17,7 @@
   <canvas class="glitch-background" id="glitch-background" aria-hidden="true"></canvas>
   <div class="halflife-backdrop" aria-hidden="true"></div>
   <div class="portal-backdrop" aria-hidden="true"></div>
+  <div class="mgs-ladder-backdrop" aria-hidden="true"></div>
   <div class="site-shell">
     <header class="masthead">
       <nav class="top-nav" aria-label="Main navigation">
@@ -47,7 +48,7 @@
       </div>
       <div class="theme-options" id="theme-options" role="group" aria-label="Choose a website theme">
         <button class="theme-button is-active" data-theme="default" type="button"><span
-            class="theme-swatch theme-swatch--default"></span>Terminal green</button>
+            class="theme-swatch theme-swatch--default"></span>Metal Gear Solid</button>
         <button class="theme-button" data-theme="greyscale" type="button"><span
             class="theme-swatch theme-swatch--greyscale"></span>Black Mesa</button>
         <button class="theme-button" data-theme="portal" type="button"><span
@@ -57,7 +58,12 @@
         <button class="theme-button" data-theme="halflife" type="button"><span
             class="theme-swatch theme-swatch--halflife"></span>Half-Life 2</button>
       </div>
+      <div class="music-control">
+        <span class="control-label">Codec transmission</span>
+        <button class="music-button" id="music-toggle" type="button" aria-pressed="false">PLAY TRANSMISSION</button>
+      </div>
     </section>
+    <div class="music-player" id="music-player" aria-live="polite"></div>
 
     <main>
       <section class="about-section" id="about" aria-labelledby="about-title">

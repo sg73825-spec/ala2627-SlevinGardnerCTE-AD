@@ -48,6 +48,8 @@ const matrixContext = matrixCanvas ? matrixCanvas.getContext('2d') : null;
 const glitchCanvas = document.querySelector('#glitch-background');
 const glitchContext = glitchCanvas ? glitchCanvas.getContext('2d') : null;
 const rickStream = document.querySelector('#rick-stream');
+const musicToggle = document.querySelector('#music-toggle');
+const musicPlayer = document.querySelector('#music-player');
 const hasCommandLibrary = Boolean(grid && search && filters && emptyState && resultCount && pageNote && pageButtons);
 let activeFilter = 'all';
 let activePage = 1;
@@ -61,6 +63,20 @@ let glitchAnimation;
 let rickAnimation;
 let rickFrames = [];
 let rickFrameIndex = 0;
+
+function toggleMusic() {
+  if (!musicToggle || !musicPlayer) return;
+  const isPlaying = musicToggle.getAttribute('aria-pressed') === 'true';
+  if (isPlaying) {
+    musicPlayer.innerHTML = '';
+    musicToggle.setAttribute('aria-pressed', 'false');
+    musicToggle.textContent = 'PLAY TRANSMISSION';
+    return;
+  }
+  musicPlayer.innerHTML = '<iframe title="Midge Ure - The Man Who Sold The World" src="https://www.youtube.com/embed/mXHKjFKBC0g?autoplay=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>';
+  musicToggle.setAttribute('aria-pressed', 'true');
+  musicToggle.textContent = 'STOP TRANSMISSION';
+}
 
 async function loadRickStream() {
   try {
@@ -308,6 +324,8 @@ if (themeOptions) {
     if (button) setTheme(button.dataset.theme);
   });
 }
+
+if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
 
 if (hasCommandLibrary) {
   render();

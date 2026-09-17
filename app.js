@@ -70,7 +70,7 @@ function toggleMusic() {
   if (isPlaying) {
     musicPlayer.innerHTML = '';
     musicToggle.setAttribute('aria-pressed', 'false');
-    musicToggle.textContent = 'PLAY TRANSMISSION';
+    musicToggle.textContent = 'PLAY SONG';
     return;
   }
   musicPlayer.innerHTML = '<iframe title="Midge Ure - The Man Who Sold The World" src="https://www.youtube.com/embed/mXHKjFKBC0g?autoplay=1" allow="autoplay; encrypted-media" loading="lazy"></iframe>';
@@ -231,7 +231,7 @@ function setTheme(theme) {
   localStorage.setItem('cmd-library-theme', theme);
   setMatrixState(theme === 'matrix');
   setGlitchState(theme === 'greyscale');
-  setRickState(theme === 'default');
+  setRickState(false);
 }
 
 function render() {
@@ -332,7 +332,7 @@ if (hasCommandLibrary) {
 }
 setTheme(localStorage.getItem('cmd-library-theme') || 'default');
 if (rickStream) {
-  loadRickStream().then(() => setRickState(document.documentElement.dataset.theme === 'default'));
+  loadRickStream();
 }
 resizeMatrix();
 resizeGlitch();

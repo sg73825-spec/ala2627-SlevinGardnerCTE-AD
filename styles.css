@@ -345,8 +345,9 @@ body::before {
     linear-gradient(90deg, transparent 0 18%, rgba(4, 5, 5, .55) 18.2% 20%, transparent 20.2% 79.8%, rgba(4, 5, 5, .55) 80% 81.8%, transparent 82%),
     repeating-linear-gradient(0deg, rgba(166, 177, 159, .08) 0 1px, transparent 1px 4rem),
     radial-gradient(ellipse at 50% 18%, rgba(213, 107, 44, .16), transparent 32rem),
+    url('https://cdn.cloudflare.steamstatic.com/steam/apps/362890/capsule_616x353.jpg') center / cover no-repeat,
     var(--bg);
-  background-size: auto, auto, auto, 100% 4rem, auto, auto;
+  background-size: auto, auto, auto, 100% 4rem, auto, cover, auto;
 }
 
 :root[data-theme='greyscale'] .masthead::before,
@@ -374,6 +375,7 @@ body::before {
     linear-gradient(90deg, transparent 0 7%, rgba(37, 37, 37, .12) 7.1% 7.35%, transparent 7.45% 92.55%, rgba(37, 37, 37, .12) 92.65% 92.9%, transparent 93%),
     linear-gradient(180deg, transparent 0 68%, rgba(37, 37, 37, .18) 68.2% 68.5%, transparent 68.7%),
     repeating-linear-gradient(0deg, rgba(37, 37, 37, .045) 0 1px, transparent 1px 4rem),
+    url('https://cdn.cloudflare.steamstatic.com/steam/apps/620/capsule_616x353.jpg') center / cover no-repeat,
     var(--bg);
   background-size: auto, auto, 100% 4rem, auto;
 }

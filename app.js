@@ -229,7 +229,7 @@ function setTheme(theme) {
     });
   }
   localStorage.setItem('cmd-library-theme', theme);
-  setMatrixState(theme === 'matrix');
+  setMatrixState(false);
   setGlitchState(theme === 'greyscale');
   setRickState(false);
 }

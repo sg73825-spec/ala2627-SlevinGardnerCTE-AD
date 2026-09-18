@@ -43,20 +43,20 @@
 }
 
 :root[data-theme='matrix'] {
-  --ink: #d8ffd8;
-  --muted: #76bd76;
-  --faint: #397339;
-  --bg: #020b05;
-  --panel: #06170a;
-  --panel-bright: #09250e;
-  --line: #1d5c28;
-  --acid: #55ff70;
-  --aqua: #9cffaa;
-  --orange: #b3ff4e;
-  --danger: #66ff8a;
-  --grid-line: rgba(85, 255, 112, .035);
-  --glow: rgba(85, 255, 112, .14);
-  --command-bg: #020d05;
+  --ink: #f3e7d5;
+  --muted: #c49b82;
+  --faint: #76584d;
+  --bg: #120b0a;
+  --panel: #211311;
+  --panel-bright: #321c18;
+  --line: #6b3529;
+  --acid: #e05a32;
+  --aqua: #b8c9b6;
+  --orange: #d13f28;
+  --danger: #f06a3b;
+  --grid-line: rgba(224, 90, 50, .04);
+  --glow: rgba(184, 201, 182, .12);
+  --command-bg: #0b0706;
   --font-body: 'GorDIN', monospace;
   --font-mono: 'GorDIN', monospace;
 }
@@ -459,11 +459,22 @@ body::before {
 :root[data-theme='matrix'] body::after {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
-  background: repeating-linear-gradient(180deg, transparent 0 1.2rem, rgba(85, 255, 112, .06) 1.25rem 1.3rem);
+  background: linear-gradient(180deg, rgba(18, 11, 10, .12), rgba(18, 11, 10, .42));
   content: '';
-  animation: matrix-drift 12s linear infinite;
+}
+
+:root[data-theme='matrix'] .matrix-rain {
+  opacity: 0;
+}
+
+:root[data-theme='matrix'] body {
+  background:
+    linear-gradient(rgba(12, 7, 6, .28), rgba(12, 7, 6, .28)),
+    radial-gradient(ellipse at 50% 18%, rgba(224, 90, 50, .12), transparent 30rem),
+    url('https://images.weserv.nl/?url=m.espacepourlavie.ca/sites/espacepourlavie.ca/files/redtail_catfish_mathias_appel_620x415_0.jpg') center / cover fixed no-repeat;
+  background-size: auto, auto, cover;
 }
 
 @keyframes matrix-drift {

@@ -1170,6 +1170,203 @@ footer span {
   color: var(--aqua);
 }
 
+.guide-toggle,
+.guide-sidebar {
+  z-index: 8;
+}
+
+.guide-toggle {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .75rem .9rem;
+  border: 1px solid var(--acid);
+  border-radius: 0;
+  background: var(--panel);
+  color: var(--acid);
+  cursor: pointer;
+  font: .68rem var(--font-mono);
+  box-shadow: 0 .5rem 2rem rgba(0, 0, 0, .25);
+}
+
+.guide-toggle:hover,
+.guide-toggle[aria-expanded='true'] {
+  background: color-mix(in srgb, var(--acid) 14%, var(--panel));
+}
+
+.guide-toggle-mark {
+  display: grid;
+  width: 1.2rem;
+  height: 1.2rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.guide-sidebar {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 4.7rem;
+  display: flex;
+  width: min(25rem, calc(100vw - 2rem));
+  max-height: min(38rem, calc(100vh - 6rem));
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 1px solid var(--acid);
+  background: color-mix(in srgb, var(--panel) 94%, var(--bg));
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .36);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(1rem);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.guide-sidebar.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.guide-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.guide-eyebrow {
+  margin: 0 0 .35rem;
+  color: var(--orange);
+  font: .65rem var(--font-mono);
+  letter-spacing: .12em;
+}
+
+.guide-header h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.guide-close {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.guide-close:hover {
+  color: var(--acid);
+}
+
+.guide-intro {
+  margin: 1rem 0;
+  color: var(--muted);
+  font-size: .88rem;
+}
+
+.guide-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+
+.guide-prompts button {
+  padding: .45rem .55rem;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  color: var(--aqua);
+  cursor: pointer;
+  font: .65rem var(--font-mono);
+}
+
+.guide-prompts button:hover {
+  border-color: var(--acid);
+  color: var(--acid);
+}
+
+.guide-messages {
+  display: flex;
+  min-height: 8rem;
+  max-height: 15rem;
+  flex-direction: column;
+  gap: .6rem;
+  margin: 1rem 0;
+  overflow-y: auto;
+  padding-right: .25rem;
+}
+
+.guide-message {
+  max-width: 92%;
+  margin: 0;
+  padding: .65rem .75rem;
+  border-left: 2px solid var(--aqua);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.4;
+}
+
+.guide-message--user {
+  align-self: end;
+  border-right: 2px solid var(--acid);
+  border-left: 0;
+  color: var(--ink);
+  text-align: right;
+}
+
+.guide-message strong {
+  color: var(--acid);
+}
+
+.guide-form {
+  display: flex;
+  gap: .5rem;
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.guide-form input {
+  min-width: 0;
+  padding: .65rem .7rem;
+  background: var(--bg);
+}
+
+.guide-form button {
+  width: 2.6rem;
+  border: 1px solid var(--acid);
+  background: transparent;
+  color: var(--acid);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.guide-form button:hover {
+  background: color-mix(in srgb, var(--acid) 14%, transparent);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (max-width: 700px) {
   .site-shell {
     width: min(100% - 1.25rem, 78rem);
@@ -1263,5 +1460,16 @@ footer span {
 
   footer {
     flex-direction: column;
+  }
+
+  .guide-sidebar {
+    right: .625rem;
+    bottom: 4.5rem;
+    width: calc(100vw - 1.25rem);
+  }
+
+  .guide-toggle {
+    right: .625rem;
+    bottom: .625rem;
   }
 }

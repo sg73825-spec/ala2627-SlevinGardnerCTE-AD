@@ -364,7 +364,8 @@ if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
 if (hasCommandLibrary) {
   render();
 }
-setTheme(localStorage.getItem('cmd-library-theme') || 'default');
+const savedTheme = localStorage.getItem('cmd-library-theme');
+setTheme(savedTheme === 'default' ? 'enclave' : savedTheme || 'enclave');
 if (rickStream) {
   loadRickStream();
 }

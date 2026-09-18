@@ -353,9 +353,11 @@ body::before {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(8, 12, 16, .82), rgba(22, 31, 39, .32) 50%, rgba(8, 12, 16, .84)),
-    repeating-linear-gradient(0deg, transparent 0 4rem, rgba(214, 193, 109, .055) 4rem 4.1rem, transparent 4.1rem 8rem),
-    linear-gradient(135deg, #111b23, #332a27 54%, #11171c);
+    linear-gradient(90deg, rgba(6, 10, 15, .92), rgba(18, 29, 39, .38) 48%, rgba(6, 10, 15, .9)),
+    repeating-linear-gradient(0deg, transparent 0 3.95rem, rgba(214, 193, 109, .075) 4rem 4.08rem, transparent 4.1rem 8rem),
+    repeating-linear-gradient(90deg, transparent 0 7rem, rgba(169, 193, 199, .035) 7rem 7.05rem, transparent 7.05rem 14rem),
+    radial-gradient(ellipse at 72% 28%, rgba(184, 79, 67, .16), transparent 20rem),
+    linear-gradient(135deg, #0d1821, #2c3032 54%, #0b1218);
   opacity: 0;
   transition: opacity 350ms ease;
 }
@@ -387,6 +389,41 @@ body::before {
 
 :root[data-theme='enclave'] .enclave-backdrop {
   opacity: 1;
+}
+
+:root[data-theme='enclave'] body {
+  background:
+    linear-gradient(180deg, rgba(7, 12, 17, .12), rgba(7, 12, 17, .7)),
+    repeating-linear-gradient(0deg, rgba(169, 193, 199, .035) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, transparent 0 5rem, rgba(214, 193, 109, .035) 5rem 5.05rem, transparent 5.05rem 10rem),
+    var(--bg);
+}
+
+:root[data-theme='enclave'] body::after {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(214, 193, 109, .025) 4px);
+  content: '';
+}
+
+:root[data-theme='enclave'] .masthead::after {
+  position: absolute;
+  top: 4.5rem;
+  right: 1rem;
+  width: clamp(6rem, 15vw, 10rem);
+  height: clamp(6rem, 15vw, 10rem);
+  border: 1px solid rgba(214, 193, 109, .32);
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1rem rgba(214, 193, 109, .025), 0 0 2rem rgba(169, 193, 199, .08);
+  content: 'E';
+  color: rgba(214, 193, 109, .55);
+  font: 700 clamp(3rem, 8vw, 6rem)/1 var(--font-mono);
+  text-align: center;
+  padding-top: clamp(1.1rem, 2.8vw, 2rem);
+  opacity: .7;
+  pointer-events: none;
 }
 
 :root[data-theme='greyscale'] .black-mesa-backdrop {
@@ -778,6 +815,37 @@ input:focus {
 :root[data-theme='default'] .theme-bar {
   border-color: rgba(216, 195, 122, .48);
   background: rgba(10, 14, 8, .5);
+}
+
+:root[data-theme='enclave'] .theme-bar {
+  border-color: rgba(214, 193, 109, .5);
+  background: rgba(8, 13, 18, .72);
+}
+
+:root[data-theme='enclave'] .theme-note,
+:root[data-theme='enclave'] .status-line,
+:root[data-theme='enclave'] .kicker {
+  color: var(--aqua);
+}
+
+:root[data-theme='enclave'] .section-label,
+:root[data-theme='enclave'] .project-number {
+  color: var(--acid);
+}
+
+:root[data-theme='enclave'] .project-card {
+  border-color: rgba(83, 97, 107, .9);
+  background: linear-gradient(145deg, rgba(39, 51, 60, .9), rgba(18, 26, 33, .94));
+  box-shadow: inset 0 1px 0 rgba(214, 193, 109, .12);
+}
+
+:root[data-theme='enclave'] .project-card--featured {
+  border-top: 3px solid var(--acid);
+}
+
+:root[data-theme='enclave'] .project-card:hover {
+  border-color: var(--acid);
+  box-shadow: 0 0 1.5rem rgba(169, 193, 199, .12), inset 0 1px 0 rgba(214, 193, 109, .22);
 }
 
 :root[data-theme='default'] .theme-note,

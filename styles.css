@@ -323,7 +323,7 @@ body::before {
     linear-gradient(90deg, rgba(12, 16, 12, .88), rgba(28, 35, 25, .54) 50%, rgba(12, 16, 12, .86)),
     repeating-linear-gradient(135deg, transparent 0 5rem, rgba(210, 184, 79, .045) 5rem 5.15rem, transparent 5.15rem 10rem),
     radial-gradient(circle at 68% 28%, rgba(154, 169, 149, .14), transparent 22rem),
-    #171b17;
+    url('https://cdn.nexus.gg/assets/vidya/161739f937114280bd47c73b976cd131/images/screenshots/4.jpg') center / cover no-repeat;
   opacity: 0;
   transition: opacity 350ms ease;
 }

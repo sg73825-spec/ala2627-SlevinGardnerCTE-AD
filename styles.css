@@ -137,6 +137,25 @@
   --font-mono: 'GorDIN', monospace;
 }
 
+:root[data-theme='votv'] {
+  --ink: #d7e1d7;
+  --muted: #9eafa0;
+  --faint: #627567;
+  --bg: #0b120e;
+  --panel: #121e17;
+  --panel-bright: #1b2c20;
+  --line: #3c5944;
+  --acid: #b7d86e;
+  --aqua: #9ed0a8;
+  --orange: #d28f4f;
+  --danger: #b95b4f;
+  --grid-line: rgba(183, 216, 110, .035);
+  --glow: rgba(158, 208, 168, .1);
+  --command-bg: #070d09;
+  --font-body: 'GorDIN', monospace;
+  --font-mono: 'GorDIN', monospace;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -362,6 +381,19 @@ body::before {
   transition: opacity 350ms ease;
 }
 
+.votv-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(5, 10, 7, .88), rgba(8, 17, 11, .3) 48%, rgba(5, 10, 7, .78)),
+    linear-gradient(180deg, rgba(4, 8, 6, .18), rgba(4, 9, 6, .86)),
+    url('https://img.itch.zone/aW1hZ2UvMTYzNTQ2NS8yNjQyOTQxOS5qcGc=/original/Th2J9l.jpg') center / cover no-repeat;
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
 .mgs-ladder-backdrop {
   position: fixed;
   inset: 0;
@@ -389,6 +421,29 @@ body::before {
 
 :root[data-theme='enclave'] .enclave-backdrop {
   opacity: 1;
+}
+
+:root[data-theme='votv'] .votv-backdrop {
+  opacity: 1;
+}
+
+:root[data-theme='votv'] body {
+  background:
+    linear-gradient(180deg, rgba(5, 12, 7, .2), rgba(5, 12, 7, .78)),
+    repeating-linear-gradient(0deg, rgba(158, 208, 168, .035) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, transparent 0 5rem, rgba(183, 216, 110, .035) 5rem 5.05rem, transparent 5.05rem 10rem),
+    var(--bg);
+}
+
+:root[data-theme='votv'] .theme-bar {
+  border-color: rgba(183, 216, 110, .45);
+  background: rgba(5, 13, 8, .72);
+}
+
+:root[data-theme='votv'] .project-card {
+  border-color: rgba(60, 89, 68, .95);
+  background: linear-gradient(145deg, rgba(27, 44, 32, .9), rgba(10, 20, 13, .94));
+  box-shadow: inset 0 1px 0 rgba(183, 216, 110, .1);
 }
 
 :root[data-theme='enclave'] body {
@@ -893,6 +948,10 @@ input:focus {
 
 .theme-swatch--enclave {
   background: linear-gradient(135deg, #d6c16d 50%, #b84f43 50%);
+}
+
+.theme-swatch--votv {
+  background: linear-gradient(135deg, #b7d86e 50%, #304b38 50%);
 }
 
 .shortcut {

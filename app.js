@@ -73,7 +73,7 @@ function toggleMusic() {
     musicToggle.textContent = 'PLAY SONG';
     return;
   }
-  musicPlayer.innerHTML = '<iframe title="Duran Duran - Invisible" src="https://www.youtube.com/embed/aGSKrC7dGcY?autoplay=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>';
+  musicPlayer.innerHTML = '<iframe title="Invisible" src="https://www.youtube.com/embed?listType=search&list=Invisible&autoplay=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>';
   musicToggle.setAttribute('aria-pressed', 'true');
   musicToggle.textContent = 'STOP SONG';
 }

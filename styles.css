@@ -81,20 +81,39 @@
 }
 
 :root[data-theme='portal'] {
-  --ink: #252525;
-  --muted: #5b5b57;
-  --faint: #878782;
-  --bg: #d7d7d2;
-  --panel: #eeeeea;
-  --panel-bright: #fafaf6;
-  --line: #989892;
-  --acid: #e66a24;
-  --aqua: #00a9c7;
-  --orange: #df6423;
-  --danger: #c74432;
-  --grid-line: rgba(37, 37, 37, .055);
-  --glow: rgba(0, 169, 199, .16);
-  --command-bg: #202321;
+  --ink: #202b32;
+  --muted: #53636b;
+  --faint: #82939a;
+  --bg: #dfe7e9;
+  --panel: #f1f5f5;
+  --panel-bright: #ffffff;
+  --line: #8b9ca3;
+  --acid: #00a8d1;
+  --aqua: #00b8d4;
+  --orange: #f07822;
+  --danger: #d94b32;
+  --grid-line: rgba(32, 43, 50, .07);
+  --glow: rgba(0, 168, 209, .22);
+  --command-bg: #26343a;
+  --font-body: 'GorDIN', monospace;
+  --font-mono: 'GorDIN', monospace;
+}
+
+:root[data-theme='squad'] {
+  --ink: #e8e4d5;
+  --muted: #a7aa98;
+  --faint: #697160;
+  --bg: #171b17;
+  --panel: #222922;
+  --panel-bright: #30382d;
+  --line: #5b674e;
+  --acid: #d2b84f;
+  --aqua: #9aa995;
+  --orange: #c8783d;
+  --danger: #bd5841;
+  --grid-line: rgba(210, 184, 79, .045);
+  --glow: rgba(154, 169, 149, .1);
+  --command-bg: #0d110e;
   --font-body: 'GorDIN', monospace;
   --font-mono: 'GorDIN', monospace;
 }
@@ -295,6 +314,20 @@ body::before {
   transition: opacity 350ms ease;
 }
 
+.squad-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(12, 16, 12, .88), rgba(28, 35, 25, .54) 50%, rgba(12, 16, 12, .86)),
+    repeating-linear-gradient(135deg, transparent 0 5rem, rgba(210, 184, 79, .045) 5rem 5.15rem, transparent 5.15rem 10rem),
+    radial-gradient(circle at 68% 28%, rgba(154, 169, 149, .14), transparent 22rem),
+    #171b17;
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
 .mgs-ladder-backdrop {
   position: fixed;
   inset: 0;
@@ -313,6 +346,10 @@ body::before {
 }
 
 :root[data-theme='portal'] .portal-backdrop {
+  opacity: 1;
+}
+
+:root[data-theme='squad'] .squad-backdrop {
   opacity: 1;
 }
 
@@ -408,6 +445,15 @@ body::before {
     repeating-linear-gradient(0deg, rgba(37, 37, 37, .045) 0 1px, transparent 1px 4rem),
     var(--bg);
   background-size: auto, auto, 100% 4rem, auto;
+}
+
+:root[data-theme='squad'] body {
+  background:
+    repeating-linear-gradient(0deg, rgba(210, 184, 79, .04) 0 1px, transparent 1px 3rem),
+    repeating-linear-gradient(90deg, rgba(154, 169, 149, .035) 0 1px, transparent 1px 3rem),
+    radial-gradient(ellipse at 50% 0%, rgba(154, 169, 149, .1), transparent 32rem),
+    var(--bg);
+  background-size: 100% 3rem, 3rem 100%, auto, auto;
 }
 
 :root[data-theme='matrix'] body::after {
@@ -717,6 +763,10 @@ input:focus {
 
 .theme-swatch--halflife {
   background: linear-gradient(135deg, #d8752d 50%, #e6a62d 50%);
+}
+
+.theme-swatch--squad {
+  background: linear-gradient(135deg, #d2b84f 50%, #59684f 50%);
 }
 
 .shortcut {

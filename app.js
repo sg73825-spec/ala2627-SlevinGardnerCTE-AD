@@ -72,7 +72,7 @@ const musicTracks = {
   greyscale: {
     label: 'HOSTILES',
     title: "Half-Life - We've Got Hostiles",
-    source: 'https://www.youtube.com/embed/H8ZCM4FuI5A?autoplay=1&playsinline=1'
+    source: 'https://www.youtube-nocookie.com/embed/H8ZCM4FuI5A?autoplay=1&playsinline=1&rel=0'
   }
 };
 

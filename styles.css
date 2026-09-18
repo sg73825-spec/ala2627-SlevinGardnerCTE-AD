@@ -118,6 +118,25 @@
   --font-mono: 'GorDIN', monospace;
 }
 
+:root[data-theme='enclave'] {
+  --ink: #e8e4d4;
+  --muted: #a9adb0;
+  --faint: #687179;
+  --bg: #10151a;
+  --panel: #1b242c;
+  --panel-bright: #27333c;
+  --line: #53616b;
+  --acid: #d6c16d;
+  --aqua: #a9c1c7;
+  --orange: #b84f43;
+  --danger: #d25b4d;
+  --grid-line: rgba(214, 193, 109, .04);
+  --glow: rgba(169, 193, 199, .1);
+  --command-bg: #0b0f13;
+  --font-body: 'GorDIN', monospace;
+  --font-mono: 'GorDIN', monospace;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -328,6 +347,19 @@ body::before {
   transition: opacity 350ms ease;
 }
 
+.enclave-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(8, 12, 16, .82), rgba(22, 31, 39, .32) 50%, rgba(8, 12, 16, .84)),
+    repeating-linear-gradient(0deg, transparent 0 4rem, rgba(214, 193, 109, .055) 4rem 4.1rem, transparent 4.1rem 8rem),
+    linear-gradient(135deg, #111b23, #332a27 54%, #11171c);
+  opacity: 0;
+  transition: opacity 350ms ease;
+}
+
 .mgs-ladder-backdrop {
   position: fixed;
   inset: 0;
@@ -350,6 +382,10 @@ body::before {
 }
 
 :root[data-theme='squad'] .squad-backdrop {
+  opacity: 1;
+}
+
+:root[data-theme='enclave'] .enclave-backdrop {
   opacity: 1;
 }
 
@@ -785,6 +821,10 @@ input:focus {
 
 .theme-swatch--squad {
   background: linear-gradient(135deg, #d2b84f 50%, #59684f 50%);
+}
+
+.theme-swatch--enclave {
+  background: linear-gradient(135deg, #d6c16d 50%, #b84f43 50%);
 }
 
 .shortcut {

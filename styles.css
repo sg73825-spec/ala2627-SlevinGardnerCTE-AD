@@ -449,11 +449,11 @@ body::before {
 
 :root[data-theme='squad'] body {
   background:
+    linear-gradient(rgba(12, 16, 12, .35), rgba(12, 16, 12, .35)),
     repeating-linear-gradient(0deg, rgba(210, 184, 79, .04) 0 1px, transparent 1px 3rem),
     repeating-linear-gradient(90deg, rgba(154, 169, 149, .035) 0 1px, transparent 1px 3rem),
-    radial-gradient(ellipse at 50% 0%, rgba(154, 169, 149, .1), transparent 32rem),
-    var(--bg);
-  background-size: 100% 3rem, 3rem 100%, auto, auto;
+    url('https://cdn.nexus.gg/assets/vidya/161739f937114280bd47c73b976cd131/images/screenshots/4.jpg') center / cover fixed no-repeat;
+  background-size: auto, 100% 3rem, 3rem 100%, cover;
 }
 
 :root[data-theme='matrix'] body::after {

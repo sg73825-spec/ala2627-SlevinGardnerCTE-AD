@@ -370,7 +370,7 @@ if (hasCommandLibrary) {
   render();
 }
 const savedTheme = localStorage.getItem('cmd-library-theme');
-setTheme(savedTheme === 'default' ? 'enclave' : savedTheme || 'enclave');
+setTheme(savedTheme || 'default');
 if (rickStream) {
   loadRickStream();
 }

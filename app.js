@@ -50,12 +50,6 @@ const glitchContext = glitchCanvas ? glitchCanvas.getContext('2d') : null;
 const rickStream = document.querySelector('#rick-stream');
 const musicToggle = document.querySelector('#music-toggle');
 const musicPlayer = document.querySelector('#music-player');
-const guideSidebar = document.querySelector('#guide-sidebar');
-const guideToggle = document.querySelector('#guide-toggle');
-const guideClose = document.querySelector('#guide-close');
-const guideForm = document.querySelector('#guide-form');
-const guideInput = document.querySelector('#guide-input');
-const guideMessages = document.querySelector('#guide-messages');
 const hasCommandLibrary = Boolean(grid && search && filters && emptyState && resultCount && pageNote && pageButtons);
 let activeFilter = 'all';
 let activePage = 1;
@@ -69,67 +63,41 @@ let glitchAnimation;
 let rickAnimation;
 let rickFrames = [];
 let rickFrameIndex = 0;
-
-function addGuideMessage(text, type) {
-  if (!guideMessages) return;
-  const message = document.createElement('p');
-  message.className = `guide-message guide-message--${type}`;
-  message.textContent = text;
-  guideMessages.append(message);
-  guideMessages.scrollTop = guideMessages.scrollHeight;
-}
-
-function guideResponse(question) {
-  const prompt = question.toLowerCase();
-  if (prompt.includes('around') || prompt.includes('start') || prompt.includes('where')) {
-    return 'Start with About for the context, then visit What I’m building to open the project. The Now section is the quick snapshot.';
+const musicTracks = {
+  default: {
+    label: 'SONG',
+    title: 'Duran Duran - Invisible',
+    source: 'https://www.youtube.com/embed/SMCd5zrsFpE?autoplay=1&playsinline=1'
+  },
+  greyscale: {
+    label: 'HOSTILES',
+    title: "Half-Life - We've Got Hostiles",
+    source: "https://www.youtube.com/embed?listType=search&list=We've+Got+Hostiles&autoplay=1&playsinline=1"
   }
-  if (prompt.includes('build') || prompt.includes('project') || prompt.includes('work')) {
-    return 'The featured project is This Is Me. It is a personal experiment about turning ideas into sites and experiences.';
-  }
-  if (prompt.includes('now') || prompt.includes('learn') || prompt.includes('doing')) {
-    return 'Right now: learning how websites work, turning assignments into real projects, and trying things until they make sense.';
-  }
-  if (prompt.includes('theme') || prompt.includes('look') || prompt.includes('color')) {
-    return 'Use Interface theme above to change the atmosphere. Each theme changes the page without losing the same route through the site.';
-  }
-  return 'I can point you to the About, Now, or Work sections. Try asking “what is being built?” or “show me around.”';
-}
+};
 
-function openGuide() {
-  if (!guideSidebar || !guideToggle) return;
-  guideSidebar.classList.add('is-open');
-  guideSidebar.setAttribute('aria-hidden', 'false');
-  guideToggle.setAttribute('aria-expanded', 'true');
-  guideInput?.focus();
-}
-
-function closeGuide() {
-  if (!guideSidebar || !guideToggle) return;
-  guideSidebar.classList.remove('is-open');
-  guideSidebar.setAttribute('aria-hidden', 'true');
-  guideToggle.setAttribute('aria-expanded', 'false');
-}
-
-function askGuide(question) {
-  const cleanQuestion = question.trim();
-  if (!cleanQuestion) return;
-  addGuideMessage(cleanQuestion, 'user');
-  addGuideMessage(guideResponse(cleanQuestion), 'assistant');
+function getMusicTrack() {
+  return musicTracks[document.documentElement.dataset.theme];
 }
 
 function toggleMusic() {
-  if (!musicToggle || !musicPlayer) return;
+  const track = getMusicTrack();
+  if (!musicToggle || !musicPlayer || !track) return;
   const isPlaying = musicToggle.getAttribute('aria-pressed') === 'true';
   if (isPlaying) {
-    musicPlayer.innerHTML = '';
-    musicToggle.setAttribute('aria-pressed', 'false');
-    musicToggle.textContent = 'PLAY SONG';
+    stopMusic();
     return;
   }
-  musicPlayer.innerHTML = '<iframe title="Duran Duran - Invisible" src="https://www.youtube.com/embed/SMCd5zrsFpE?autoplay=1&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>';
+  musicPlayer.innerHTML = `<iframe title="${track.title}" src="${track.source}" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>`;
   musicToggle.setAttribute('aria-pressed', 'true');
   musicToggle.textContent = 'STOP SONG';
+}
+
+function stopMusic() {
+  if (!musicToggle || !musicPlayer) return;
+  musicPlayer.innerHTML = '';
+  musicToggle.setAttribute('aria-pressed', 'false');
+  musicToggle.textContent = `PLAY ${getMusicTrack()?.label || 'SONG'}`;
 }
 
 async function loadRickStream() {
@@ -275,6 +243,13 @@ function setGlitchState(isActive) {
 
 function setTheme(theme) {
   document.documentElement.dataset.theme = theme;
+  const musicTrack = musicTracks[theme];
+  if (!musicTrack || musicToggle?.getAttribute('aria-pressed') === 'true') stopMusic();
+  if (musicToggle) {
+    musicToggle.disabled = !musicTrack;
+    musicToggle.textContent = `PLAY ${musicTrack?.label || 'SONG'}`;
+    musicToggle.title = musicTrack ? `Play ${musicTrack.title}` : 'Sound is only available in the Metal Gear and Black Mesa themes';
+  }
   if (themeOptions) {
     themeOptions.querySelectorAll('[data-theme]').forEach((button) => {
       const isActive = button.dataset.theme === theme;
@@ -380,22 +355,6 @@ if (themeOptions) {
 }
 
 if (musicToggle) musicToggle.addEventListener('click', toggleMusic);
-
-if (guideToggle) guideToggle.addEventListener('click', openGuide);
-if (guideClose) guideClose.addEventListener('click', closeGuide);
-if (guideForm) {
-  guideForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    askGuide(guideInput.value);
-    guideInput.value = '';
-  });
-}
-document.querySelectorAll('[data-guide-prompt]').forEach((button) => {
-  button.addEventListener('click', () => askGuide(button.dataset.guidePrompt));
-});
-document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') closeGuide();
-});
 
 if (hasCommandLibrary) {
   render();

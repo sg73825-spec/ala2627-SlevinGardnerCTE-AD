@@ -74,6 +74,11 @@ const musicTracks = {
     title: "Half-Life - We've Got Hostiles",
     source: 'https://www.youtube-nocookie.com/embed/H8ZCM4FuI5A?autoplay=1&playsinline=1&rel=0'
   },
+  portal: {
+    label: 'PORTAL THEME',
+    title: 'Portal Theme',
+    source: 'https://www.youtube-nocookie.com/embed/dVVZaZ8yO6o?autoplay=1&playsinline=1&rel=0'
+  },
   squad: {
     label: 'SQUAD THEME',
     title: 'Nirvana - The Man Who Sold the World',

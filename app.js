@@ -81,8 +81,8 @@ const musicTracks = {
   },
   squad: {
     label: 'SQUAD THEME',
-    title: 'Nirvana - The Man Who Sold the World',
-    source: 'https://www.youtube-nocookie.com/embed/fregObNcHC8?autoplay=1&playsinline=1&rel=0'
+    title: 'Squad Theme',
+    source: 'https://www.youtube-nocookie.com/embed/mXHKjFKBC0g?autoplay=1&playsinline=1&rel=0'
   }
 };
 

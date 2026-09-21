@@ -124,39 +124,6 @@
       <p>More experiments coming.</p>
     </footer>
   </div>
-
-  <script defer>
-    (() => {
-      const playlistSource = 'https://www.youtube-nocookie.com/embed/videoseries?list=PLCo7RWd73PzPYAgXBfgFmNtX3ofDZabjh&autoplay=1&playsinline=1&rel=0';
-      const themeOptions = document.querySelector('#theme-options');
-      const musicToggle = document.querySelector('#music-toggle');
-      const musicPlayer = document.querySelector('#music-player');
-
-      themeOptions?.addEventListener('click', (event) => {
-        const themeButton = event.target.closest('[data-theme]');
-        if (!themeButton) return;
-        if (themeButton.dataset.theme === 'votv') {
-          musicToggle.disabled = false;
-          musicToggle.textContent = musicToggle.getAttribute('aria-pressed') === 'true' ? 'STOP SONG' : 'PLAY VOTV PLAYLIST';
-          musicToggle.title = 'Play Rubix Raptor\'s Voices of the Void playlist';
-        }
-      });
-
-      musicToggle?.addEventListener('click', () => {
-        if (document.documentElement.dataset.theme !== 'votv') return;
-        const isPlaying = musicToggle.getAttribute('aria-pressed') === 'true';
-        if (isPlaying) {
-          musicPlayer.innerHTML = '';
-          musicToggle.setAttribute('aria-pressed', 'false');
-          musicToggle.textContent = 'PLAY VOTV PLAYLIST';
-          return;
-        }
-        musicPlayer.innerHTML = `<iframe title="Rubix Raptor — Voices of the Void playlist" src="${playlistSource}" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>`;
-        musicToggle.setAttribute('aria-pressed', 'true');
-        musicToggle.textContent = 'STOP SONG';
-      });
-    })();
-  </script>
 </body>
 
 </html>

@@ -74,6 +74,11 @@ const musicTracks = {
     title: "Half-Life - We've Got Hostiles",
     source: 'https://www.youtube-nocookie.com/embed/H8ZCM4FuI5A?autoplay=1&playsinline=1&rel=0'
   },
+  halflife: {
+    label: 'HALF-LIFE 2 THEME',
+    title: 'Half-Life 2 Theme',
+    source: 'https://www.youtube-nocookie.com/embed/Nc-NajQ6lN8?start=12&autoplay=1&playsinline=1&rel=0'
+  },
   portal: {
     label: 'PORTAL THEME',
     title: 'Portal Theme',
@@ -263,7 +268,7 @@ function setTheme(theme) {
   if (musicToggle) {
     musicToggle.disabled = !musicTrack;
     musicToggle.textContent = `PLAY ${musicTrack?.label || 'SONG'}`;
-    musicToggle.title = musicTrack ? `Play ${musicTrack.title}` : 'Sound is only available in the Metal Gear and Black Mesa themes';
+    musicToggle.title = musicTrack ? `Play ${musicTrack.title}` : 'No soundtrack is set for this theme';
   }
   if (themeOptions) {
     themeOptions.querySelectorAll('[data-theme]').forEach((button) => {

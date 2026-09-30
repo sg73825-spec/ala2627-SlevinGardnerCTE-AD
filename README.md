@@ -1,162 +1,45 @@
- # Your landing page
+# Slevin Gardner’s Website
 
-**Step 0 — is this repo yours?**
+A personal portfolio and project hub for Slevin Gardner. It shares what I’m learning, what I’m working on, and a few interactive projects made while exploring web development.
 
-Look at the name at the very top of this page. If it says **coltonsharp-dev / …** you are still
-looking at Mr. Sharp's copy and nothing you do will save.
+## What’s on the site
 
-Go back to his repo, click the green **Use this template** button → **Create a new repository**,
-choose **Public**, and create it. Then come back here — the name at the top should be
-**your username**.
+- **About:** A little about me and why I like building things for the web.
+- **Now:** What I’m learning and spending time on lately.
+- **Work:** Project cards, including the **Silent Fleet** Battleship-style game.
+- **Seven visual themes:** Metal Gear, Black Mesa, Portal, Redtail Catfish, Half-Life 2, Squad, and Voices of the Void. The selected theme is remembered in the browser.
+- **Music button:** Plays a theme-related track in supported themes. Music comes from YouTube and starts only when the button is pressed.
+- **Animated backgrounds:** Visual effects change with the selected theme.
 
-### Name it exactly like this
+Use the jump links or the navigation at the top of the page to move between sections.
 
-```
-ala2627-firstnamelastnameCTE-AD
-```
+## Silent Fleet
 
-All one word for the name, no spaces, no punctuation. So Colton Sharp would be:
+[Open Silent Fleet](assignments/01-this-is-me/battleship.html)
 
-```
-ala2627-coltonsharpCTE-AD
-```
+Place a fleet on an 8 × 8 grid, then search the enemy waters. Ships can face horizontally or vertically and cannot overlap. Each side fires up to four shots per turn. The game shows your fleet, animated ocean water, and fire and hull damage at enemy ship locations you hit. Enemy ships remain hidden until you hit them.
 
-Type it carefully — **this name becomes part of your web address**, and it is a nuisance to change
-later.
+The ship illustrations are original SVGs inspired by [CraftPix’s free military boat pack](https://craftpix.net/freebies/free-top-down-military-boats-pixel-art/).
 
-Everything below assumes you are in **your own** repo.
+## Other projects and learning materials
 
----
+- **The Vault** (game/): A Python text adventure. See [its README](game/README.md) for how to play and change it.
+- **Day 24** (day-24/): A flexbox lesson and starter files.
+- **Week 08** (week-08/): JavaScript lessons and a small interactive website project.
 
-## What is in here — three projects, one codespace
+These exercises live alongside the portfolio, but they are not sections of the main landing page.
 
-| Folder | Project | Run it by |
-|---|---|---|
-| **root** — `index.html`, `styles.css` | Your landing page. This is what GitHub Pages puts on the internet. | Terminal: `python -m http.server 8000` |
-| **`game/`** — `game.py` | The Vault, a text adventure. Its own README is in that folder. | Open the file, click **▶ Run** — or `python game/game.py` |
-| **`assignments/01-this-is-me/`** | Assignment 01. A working site you make yours — 14 TODOs. Its own README is in that folder. | Serve the root, then visit `/assignments/01-this-is-me/` |
+## Run the website locally
 
-One codespace opens all three. `game/` is invisible to your website, and the assignment sits in
-its own folder — Pages serves `index.html` from the root, so none of them interfere. The
-assignment does get its own live address once Pages is on, one level down.
+This is a static site made with HTML, CSS, and JavaScript; there are no packages to install. From the project folder, start a local server:
 
----
+~~~sh
+python3 -m http.server 8000
+~~~
 
-## 1. Open your codespace
+Then open [http://localhost:8000](http://localhost:8000). To play Silent Fleet, open [http://localhost:8000/assignments/01-this-is-me/battleship.html](http://localhost:8000/assignments/01-this-is-me/battleship.html).
 
-A codespace is a real computer that runs in your browser. You get a terminal, Python, and a live
-preview — none of which a normal text editor has.
+## Publish with GitHub Pages
 
-1. Click the green **`< > Code`** button (top right of the file list).
-2. Click the **Codespaces** tab.
-3. Click **Create codespace on main**.
+In the repository’s **Settings → Pages**, choose **Deploy from a branch**, select the **main** branch and the **/(root)** folder, then save. GitHub Pages will publish the site from the root index.html; new commits update the published site.
 
-The first one takes a few minutes — it is building a machine from scratch. After that, the same
-button reopens it in seconds.
-
-> **You get a limited number of free hours each month, and it is plenty** — but when you are done
-> for the day, go to **github.com/codespaces** and **Stop** it. It also stops itself after 30
-> minutes of you not touching it.
-
----
-
-## 2. Make it yours
-
-Open `index.html` and change, in this order:
-
-1. The `<title>` — this is the browser tab, and what a search engine shows.
-2. The `<h1>` — your name.
-3. The tagline under it.
-4. Everything marked `CHANGE THIS` in a comment.
-
-Then open `styles.css` and change `--accent` to a colour you actually like. One value, and the
-whole page changes. That is what those variables are for.
-
----
-
-## 3. See it while you work
-
-In the terminal at the bottom of the screen, type:
-
-```
-python -m http.server 8000
-```
-
-A box pops up saying a port is available — click **Open in Browser**. Your page loads in a new tab.
-Change a file, save, reload that tab, and your change is there.
-
-**That terminal is now busy running the server.** To type another command, press **Ctrl+C** to stop
-it, or click **+** to open a second terminal. It is not frozen.
-
----
-
-## 4. Save it properly — this is the part people skip
-
-Editing is not saving to GitHub. Your work is on that machine until you **commit** it.
-
-1. Click **Source Control** in the left bar — the branch-looking icon. It shows a number: how many
-   files you changed.
-2. Type a message in the box. Say **what you changed**, not "update":
-   - bad → `update`
-   - good → `Change heading to my name and set the accent colour`
-3. Click **Commit**, then **Sync Changes** (or the **…** menu → Push).
-
-Now it is on GitHub with your name and a timestamp on it, permanently.
-
-**Commit often** — every time you finish one thing. A commit is free and it is the only way back
-if you break something.
-
----
-
-## 5. Put it on the internet
-
-Once, at the start:
-
-1. Your repo → **Settings** → **Pages** (left sidebar).
-2. **Source: Deploy from a branch**, Branch **main**, folder **/ (root)** → **Save**.
-3. Wait a minute, refresh, and a URL appears.
-
-Your page is then at:
-
-```
-https://YOUR-USERNAME.github.io/ala2627-firstnamelastnameCTE-AD/
-```
-
-so Colton Sharp's would be `https://coltonsharp.github.io/ala2627-coltonsharpCTE-AD/` — your
-username first, then the repo name, spelled and capitalised **exactly** as you created it.
-
-After that, every commit updates it automatically. Give it a minute. **Open it on your phone** —
-that is the real test.
-
----
-
-## Just need to fix one word?
-
-You do not have to start a codespace. On your repo press **`.`** (period) — a lightweight editor
-opens instantly.
-
-It edits and commits, and that is all: **no terminal, no `python -m http.server`, no preview.**
-Good for a typo. Use the codespace for real work.
-
----
-
-## When something goes wrong
-
-| What you see | What it actually is |
-|---|---|
-| Nothing saves / repo is not yours | Still in Mr. Sharp's copy. See Step 0. |
-| Live URL 404s and the file is right | The repo name in the address is misspelled or mis-capitalised. It must match exactly. |
-| Page is blank | A tag you never closed. Look for a `<p>` with no `</p>`. |
-| Terminal will not take a command | The server is running in it. **Ctrl+C**, or open a second terminal with **+**. |
-| Changes not on the live URL | You edited but did not **commit and push**. Check Source Control for a number. |
-| Still not showing after pushing | Give it a minute, then hard-reload: **Ctrl+Shift+R**. |
-| **404** on your Pages URL | The filename. It must be `index.html` — all lower case. `Index.html` will not serve. |
-| Page loads with no styling | `styles.css` is missing or renamed. The name in the `<link>` must match the file exactly. |
-| Codex will not sign in | It needs a **Plus, Pro, Business, Edu or Enterprise** ChatGPT plan. A free account cannot sign in. |
-
----
-
-## What this is for
-
-You will leave ALA. This page will not. It is not tied to a class, a school account, or a grade —
-it is a URL you own and can hand to anyone. Keep committing to it.

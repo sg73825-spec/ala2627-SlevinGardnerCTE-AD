@@ -180,6 +180,49 @@ body {
   color: var(--acid);
 }
 
+.jump-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 1rem 0 0;
+  padding: .65rem .8rem;
+  border: 1px solid var(--line);
+  background: var(--command-bg);
+  box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .2);
+}
+
+.jump-toolbar-label {
+  margin-right: .35rem;
+  color: var(--faint);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.jump-toolbar a {
+  padding: .25rem .55rem;
+  color: var(--muted);
+  font-size: .8rem;
+  text-decoration: none;
+}
+
+.jump-toolbar a:hover,
+.jump-toolbar a:focus-visible {
+  color: var(--acid);
+  outline-color: var(--acid);
+}
+
+#top,
+#about,
+#now,
+#work,
+#footer {
+  scroll-margin-top: 5rem;
+}
+
 .masthead h1 {
   max-width: 12ch;
 }
@@ -1248,6 +1291,24 @@ footer span {
   .nav-links {
     gap: .8rem;
     font-size: .82rem;
+  }
+
+  .jump-toolbar {
+    gap: .25rem;
+    overflow-x: auto;
+    margin-inline: -.1rem;
+    padding: .55rem .4rem;
+  }
+
+  .jump-toolbar-label {
+    flex: 0 0 auto;
+    font-size: .62rem;
+  }
+
+  .jump-toolbar a {
+    flex: 0 0 auto;
+    padding-inline: .45rem;
+    font-size: .75rem;
   }
 
   .about-section,

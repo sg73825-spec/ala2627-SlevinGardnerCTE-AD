@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11150f">
+  <title>Silent Fleet // SG</title>
+  <link rel="stylesheet" href="battleship.css">
+  <script src="battleship.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <a class="back-link" href="../../index.html#work">&larr; Back to projects</a>
+    <header class="hero">
+      <p class="eyebrow">SG / FIELD SIMULATION 01</p>
+      <h1>Silent Fleet</h1>
+      <p class="intro">Place your fleet, then take turns searching the enemy waters. You get four shots per turn.</p>
+    </header>
+
+    <section class="game-panel" aria-labelledby="game-title">
+      <div class="game-heading">
+        <div>
+          <p class="section-label">NAVAL COMMAND</p>
+          <h2 id="game-title">Fleet setup</h2>
+        </div>
+        <button class="reset-button" id="new-game" type="button">New game</button>
+      </div>
+      <p id="status" class="status" aria-live="polite">Place your Carrier (4 spaces). Choose a direction, then select a starting square.</p>
+
+      <div class="setup-controls" id="setup-controls">
+        <div class="setup-readout"><span>Placing</span><strong id="ship-to-place">Carrier · 4 spaces</strong></div>
+        <button class="action-button" id="orientation" type="button" aria-pressed="true">Direction: Horizontal</button>
+        <ol class="fleet-list" id="fleet-list" aria-label="Your fleet">
+          <li data-ship="Carrier">Carrier <span>4</span></li>
+          <li data-ship="Destroyer">Destroyer <span>3</span></li>
+          <li data-ship="Submarine">Submarine <span>3</span></li>
+          <li data-ship="Patrol boat">Patrol boat <span>2</span></li>
+        </ol>
+        <button class="action-button start-button" id="start-battle" type="button" disabled>Start battle</button>
+      </div>
+
+      <div class="battle-info" id="battle-info" hidden>
+        <div><span class="info-label">YOUR VOLLEY</span><strong id="shots-left">4 shots left</strong></div>
+        <div><span class="info-label">FLEET STATUS</span><strong id="fleet-status">You 0 / 4 · Enemy 0 / 4</strong></div>
+      </div>
+
+      <div class="boards" id="battle-boards" hidden>
+        <section class="board-card" aria-labelledby="enemy-heading">
+          <div class="board-title"><h3 id="enemy-heading">Enemy waters</h3><span>Pick targets</span></div>
+          <div class="board-wrap">
+            <div class="axis axis-corner" aria-hidden="true"></div>
+            <div class="axis axis-columns" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span></div>
+            <div class="axis axis-rows" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+            <div class="board" id="enemy-board" role="group" aria-label="Enemy target grid"></div>
+          </div>
+        </section>
+        <section class="board-card" aria-labelledby="player-heading">
+          <div class="board-title"><h3 id="player-heading">Your fleet</h3><span>Defend your ships</span></div>
+          <div class="board-wrap">
+            <div class="axis axis-corner" aria-hidden="true"></div>
+            <div class="axis axis-columns" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span></div>
+            <div class="axis axis-rows" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+            <div class="board" id="player-board" role="group" aria-label="Your fleet grid"></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="setup-board" id="setup-board-wrap">
+        <p class="board-hint" id="board-hint">Select a square to place the start of your ship.</p>
+        <div class="board-wrap">
+          <div class="axis axis-corner" aria-hidden="true"></div>
+          <div class="axis axis-columns" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span></div>
+          <div class="axis axis-rows" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+          <div class="board" id="setup-board" role="group" aria-label="Place your ships on this grid"></div>
+        </div>
+      </div>
+
+      <p class="legend"><span><i class="ship-key" aria-hidden="true"></i>Your ship</span><span><i class="legend-hit" aria-hidden="true">✦</i>Hit</span><span><i class="legend-miss" aria-hidden="true">·</i>Miss</span></p>
+      <p class="help-note">Ships can face across or down. You can’t place ships on top of each other. Ship art inspired by <a href="https://craftpix.net/freebies/free-top-down-military-boats-pixel-art/">CraftPix.net’s military boat pack</a>.</p>
+    </section>
+    <footer>SG // GOOD LUCK OUT THERE</footer>
+  </main>
+</body>
+</html>

@@ -83,6 +83,11 @@ const musicTracks = {
     label: 'SQUAD THEME',
     title: 'Squad Theme',
     source: 'https://www.youtube-nocookie.com/embed/mXHKjFKBC0g?autoplay=1&playsinline=1&rel=0'
+  },
+  votv: {
+    label: 'VOTV THEME',
+    title: 'Voices of the Void',
+    source: 'https://www.youtube.com/embed/sFJ5LrDIzes?autoplay=1&playsinline=1&rel=0'
   }
 };
 
@@ -98,7 +103,7 @@ function toggleMusic() {
     stopMusic();
     return;
   }
-  musicPlayer.innerHTML = `<iframe title="${track.title}" src="${track.source}" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>`;
+  musicPlayer.innerHTML = `<iframe title="${track.title}" src="${track.source}" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture" loading="eager" allowfullscreen></iframe>`;
   musicToggle.setAttribute('aria-pressed', 'true');
   musicToggle.textContent = 'STOP SONG';
 }

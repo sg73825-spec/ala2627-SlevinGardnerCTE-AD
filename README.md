@@ -23,6 +23,7 @@ The ship illustrations are original SVGs inspired by [CraftPix’s free military
 
 ## Other projects and learning materials
 
+- **Stormworks Lua Field Guide** ([open the guide](stormworks-lua.html)): A beginner-to-advanced walkthrough of Lua microcontrollers, inputs and outputs, monitor drawing, and debugging in Stormworks: Build and Rescue.
 - **The Vault** (game/): A Python text adventure. See [its README](game/README.md) for how to play and change it.
 - **Day 24** (day-24/): A flexbox lesson and starter files.
 - **Week 08** (week-08/): JavaScript lessons and a small interactive website project.
@@ -42,4 +43,3 @@ Then open [http://localhost:8000](http://localhost:8000). To play Silent Fleet, 
 ## Publish with GitHub Pages
 
 In the repository’s **Settings → Pages**, choose **Deploy from a branch**, select the **main** branch and the **/(root)** folder, then save. GitHub Pages will publish the site from the root index.html; new commits update the published site.
-

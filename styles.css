@@ -242,6 +242,92 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
+/* Stormworks Lua learning guide */
+.lua-masthead h1 { max-width: 15ch; }
+.lua-callout, .lua-note, .lua-resource {
+  margin-top: 1.5rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--acid);
+  background: var(--panel);
+  color: var(--muted);
+}
+.lua-callout strong, .lua-note b, .lua-resource b { color: var(--ink); }
+.lua-guide code { color: var(--aqua); }
+.lua-section {
+  display: grid;
+  grid-template-columns: minmax(12rem, .8fr) 1.2fr;
+  gap: 3rem;
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 5rem;
+}
+.lua-section h2 { margin-top: .5rem; }
+.lua-content { min-width: 0; color: var(--muted); }
+.lua-content p:first-child { margin-top: 0; }
+.lua-steps { padding-left: 1.4rem; }
+.lua-steps li { padding: .35rem 0 .35rem .3rem; }
+.lua-steps b { color: var(--ink); }
+.lua-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.lua-card, .lua-example {
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+.lua-card h3, .lua-example h3 { margin: 0 0 .6rem; color: var(--ink); }
+.lua-card p, .lua-example p { margin: .5rem 0; }
+.lua-code {
+  overflow-x: auto;
+  margin: 1rem 0;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--line);
+  background: var(--command-bg);
+  color: var(--ink);
+  font: .9rem/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+  tab-size: 4;
+}
+.lua-example { margin: 0 0 1.1rem; }
+.lua-example-heading { display: flex; align-items: baseline; gap: .8rem; }
+.lua-level { flex: 0 0 auto; color: var(--acid); font-size: .68rem; letter-spacing: .12em; }
+.lua-debug-list p { padding: .65rem 0; border-bottom: 1px solid var(--line); }
+.lua-debug-list b { color: var(--ink); }
+.lua-resource a { color: var(--aqua); }
+.lua-guide footer a { color: var(--aqua); }
+.lua-sandbox {
+  padding: 1rem;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+.lua-sandbox-toolbar { display: flex; align-items: end; flex-wrap: wrap; gap: .65rem; margin-bottom: 1rem; }
+.lua-sandbox-toolbar label { display: grid; gap: .25rem; color: var(--muted); font-size: .78rem; }
+.lua-sandbox-toolbar input, .lua-run-button, .lua-reset-button {
+  min-height: 2.6rem;
+  border: 1px solid var(--line);
+  padding: .45rem .7rem;
+  background: var(--command-bg);
+  color: var(--ink);
+}
+.lua-run-button { background: var(--acid); color: var(--bg); font-weight: 700; cursor: pointer; }
+.lua-reset-button { cursor: pointer; }
+.lua-run-button:disabled { cursor: wait; opacity: .65; }
+.lua-editor-label { display: block; margin-bottom: .4rem; color: var(--ink); font-size: .82rem; }
+.lua-editor {
+  display: block;
+  width: 100%;
+  min-height: 18rem;
+  resize: vertical;
+  border: 1px solid var(--line);
+  padding: 1rem;
+  background: var(--command-bg);
+  color: var(--ink);
+  font: .85rem/1.6 ui-monospace, SFMono-Regular, Consolas, monospace;
+  tab-size: 4;
+}
+.lua-sandbox-note { font-size: .78rem; }
+.lua-console { border: 1px solid var(--line); background: var(--command-bg); }
+.lua-console-heading { padding: .45rem .7rem; border-bottom: 1px solid var(--line); color: var(--acid); font-size: .7rem; letter-spacing: .12em; }
+.lua-console pre { min-height: 3rem; overflow: auto; margin: 0; padding: .8rem; color: var(--aqua); white-space: pre-wrap; font: .82rem/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; }
+
 .section-label,
 .project-number {
   color: var(--acid);
@@ -1318,6 +1404,11 @@ footer span {
     gap: 1.5rem;
     padding: 3rem 0;
   }
+
+  .lua-section { grid-template-columns: 1fr; gap: 1.25rem; padding: 3rem 0; }
+  .lua-columns { grid-template-columns: 1fr; }
+  .lua-example-heading { align-items: flex-start; flex-direction: column; gap: .25rem; }
+  .lua-editor { min-height: 15rem; }
 
   .project-grid {
     grid-template-columns: 1fr;

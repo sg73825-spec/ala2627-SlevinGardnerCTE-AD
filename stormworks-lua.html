@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10151a">
+  <meta name="description" content="A practical beginner to advanced guide to Lua in Stormworks: Build and Rescue.">
+  <title>Stormworks Lua Field Guide // SG</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <pre class="rick-stream" id="rick-stream" aria-hidden="true"></pre>
+  <canvas class="matrix-rain" id="matrix-rain" aria-hidden="true"></canvas>
+  <canvas class="glitch-background" id="glitch-background" aria-hidden="true"></canvas>
+  <div class="black-mesa-backdrop" aria-hidden="true"></div><div class="halflife-backdrop" aria-hidden="true"></div>
+  <div class="portal-backdrop" aria-hidden="true"></div><div class="squad-backdrop" aria-hidden="true"></div>
+  <div class="votv-backdrop" aria-hidden="true"></div><div class="mgs-ladder-backdrop" aria-hidden="true"></div>
+  <div class="site-shell lua-guide">
+    <nav class="jump-toolbar" aria-label="Jump to a section">
+      <span class="jump-toolbar-label">Guide</span><a href="#start">Start</a><a href="#basics">Basics</a><a href="#lua-terminal">Terminal</a><a href="#examples">Examples</a><a href="#debug">Debug</a><a href="#next">Next steps</a>
+    </nav>
+    <header class="masthead lua-masthead">
+      <nav class="top-nav" aria-label="Main navigation"><a class="back-link" href="index.html">SG / Home</a><div class="nav-links"><a href="index.html#work">Projects</a><a href="#examples">Examples</a></div></nav>
+      <p class="status-line"><span class="status-dot"></span>FIELD GUIDE / LUA SYSTEMS</p>
+      <p class="kicker">STORMWORKS: BUILD AND RESCUE / MICROCONTROLLERS</p>
+      <h1 id="start">Lua from the <em>first wire</em> up.</h1>
+      <div class="intro-row"><p class="intro">Learn how to start a Lua microcontroller, read and send signals, draw a screen, and grow those pieces into useful systems for boats, planes, and vehicles.</p><p class="boundary"><strong>How to use this guide</strong><br>Try one example at a time in a test vehicle. Connect the channels shown, save, then test in the game.</p></div>
+      <div class="lua-callout"><strong>First, know the environment:</strong> Stormworks Lua runs inside a microcontroller. The game calls <code>onTick()</code> for logic and <code>onDraw()</code> for a connected monitor. This is different from running a Lua file on your computer.</div>
+    </header>
+    <main>
+      <section class="lua-section" id="basics">
+        <div><p class="section-label">01 / GETTING STARTED</p><h2>Build a tiny test bench</h2></div>
+        <div class="lua-content">
+          <p>In the vehicle editor, add a microcontroller and open its editor. Add a Lua block, open its script, and use the microcontroller’s input and output tabs to create the channels your script needs. Wire a number source to a number input and a number output to a dial or another component. For screen examples, connect a monitor to the microcontroller’s video output.</p>
+          <ol class="lua-steps"><li>Give channels clear names in the editor, such as <b>Throttle</b> or <b>Speed</b>.</li><li>Use the channel number in code: channel 1 is <code>input.getNumber(1)</code>.</li><li>Press the in-game test or start button and watch the connected output.</li><li>Change one thing, test again, and keep a known working copy.</li></ol>
+          <div class="lua-note"><b>Important:</b> Lua reads the numbered channels you configure on the microcontroller. A wire by itself does not tell the script what a value means; your channel layout and code must agree.</div>
+        </div>
+      </section>
+      <section class="lua-section" id="lua-terminal" aria-labelledby="terminal-title">
+        <div><p class="section-label">INTERACTIVE / TEST BENCH</p><h2 id="terminal-title">Run Lua in the browser</h2></div>
+        <div class="lua-content">
+          <p>Edit the script, set a sample number input, and press Run. The test bench simulates one <code>onTick()</code> and one <code>onDraw()</code>, then shows printed text, output channels, and screen drawing calls.</p>
+          <div class="lua-sandbox">
+            <div class="lua-sandbox-toolbar"><label for="sim-input-number">Number input 1 <input id="sim-input-number" type="number" value="0.65" step="0.05"></label><button class="lua-run-button" id="lua-run" type="button">RUN SCRIPT</button><button class="lua-reset-button" id="lua-reset" type="button">LOAD EXAMPLE</button></div>
+            <label class="lua-editor-label" for="lua-editor">Microcontroller script</label>
+            <textarea id="lua-editor" class="lua-editor" spellcheck="false" aria-describedby="lua-sandbox-note">function onTick()
+    local value = input.getNumber(1)
+    output.setNumber(1, value * 100)
+    print("Value:", value)
+end
+
+function onDraw()
+    screen.setColor(220, 220, 180)
+    screen.drawText(2, 2, "LEVEL")
+end</textarea>
+            <p class="lua-sandbox-note" id="lua-sandbox-note">This is a browser simulation, not Stormworks itself. Inputs are sample values; screen and output calls are reported as text. The Lua runtime loads from a CDN, so the first run needs an internet connection.</p>
+            <div class="lua-console" aria-live="polite"><div class="lua-console-heading">TEST BENCH OUTPUT</div><pre id="lua-output">Ready. Press Run Script.</pre></div>
+          </div>
+        </div>
+      </section>
+      <section class="lua-section">
+        <div><p class="section-label">02 / THE SHAPE OF A SCRIPT</p><h2>Two places your code runs</h2></div>
+        <div class="lua-content"><div class="lua-columns"><article class="lua-card"><h3><code>onTick()</code> — logic</h3><p>Runs repeatedly while the microcontroller is active. Read inputs, calculate values, remember state, and set outputs here.</p></article><article class="lua-card"><h3><code>onDraw()</code> — screen</h3><p>Runs to draw the monitor image. Get the screen size, choose a color, and draw shapes or text here.</p></article></div>
+          <pre class="lua-code"><code>function onTick()
+    -- Read inputs and update outputs here
+end
+
+function onDraw()
+    -- Draw the monitor here
+end</code></pre>
+          <p>Lua uses <code>--</code> for comments. Function names and API capitalization matter: write <code>input.getNumber</code> exactly like that. A typo such as <code>input.getnumber</code> will not call the same function.</p>
+        </div>
+      </section>
+      <section class="lua-section" id="examples">
+        <div><p class="section-label">03 / EASY TO HARD</p><h2>Build up in small steps</h2></div>
+        <div class="lua-content">
+          <article class="lua-example"><div class="lua-example-heading"><span class="lua-level">EASY / 01</span><h3>Pass a signal through</h3></div><p>Set up number input channel 1 and number output channel 1. Connect a number source, then check that the output follows it.</p><pre class="lua-code"><code>function onTick()
+    local value = input.getNumber(1)
+    output.setNumber(1, value)
+end</code></pre><p><b>Learn:</b> <code>local</code> stores a value for this function call. The number inside parentheses is the channel.</p></article>
+          <article class="lua-example"><div class="lua-example-heading"><span class="lua-level">EASY / 02</span><h3>Make a simple switch</h3></div><p>Set up boolean input channel 1 and boolean output channel 1. A boolean is either true or false.</p><pre class="lua-code"><code>function onTick()
+    local switchOn = input.getBool(1)
+    output.setBool(1, switchOn)
+end</code></pre><p>To invert it, send <code>not switchOn</code> to the output. Use booleans for on/off signals and numbers for measurements.</p></article>
+          <article class="lua-example"><div class="lua-example-heading"><span class="lua-level">MEDIUM / 03</span><h3>Keep a value in a safe range</h3></div><p>Read a number from channel 1, limit it between 0 and 1, and write it to output channel 1. This is useful when a control should never go below zero or above full scale.</p><pre class="lua-code"><code>function onTick()
+    local value = input.getNumber(1)
+    value = math.max(0, math.min(1, value))
+    output.setNumber(1, value)
+end</code></pre><p>The inner <code>math.min</code> sets the upper limit; <code>math.max</code> sets the lower limit.</p></article>
+          <article class="lua-example"><div class="lua-example-heading"><span class="lua-level">MEDIUM / 04</span><h3>Draw a basic instrument</h3></div><p>Connect a monitor. This reads a number input, shows it as text, and draws a bar for values from 0 to 1.</p><pre class="lua-code"><code>function onDraw()
+    local w = screen.getWidth()
+    local h = screen.getHeight()
+    local value = math.max(0, math.min(1, input.getNumber(1)))
+
+    screen.setColor(20, 30, 20)
+    screen.drawClear()
+    screen.setColor(220, 220, 180)
+    screen.drawText(2, 2, "LEVEL")
+    screen.drawRect(2, 14, w - 5, 6)
+    screen.drawRectF(3, 15, (w - 7) * value, 4)
+    screen.drawText(2, 24, string.format("%d%%", value * 100))
+end</code></pre><p>Screen coordinates start at the upper-left: x increases to the right and y increases downward. Keep text and shapes inside the monitor’s width and height.</p></article>
+          <article class="lua-example"><div class="lua-example-heading"><span class="lua-level">HARD / 05</span><h3>Make a latched toggle</h3></div><p>A push button only stays true while pressed. A latch remembers the state after you release it. Set up boolean input channel 1 and output channel 1, and wire a momentary button to the input.</p><pre class="lua-code"><code>local isOn = false
+local wasPressed = false
+
+function onTick()
+    local pressed = input.getBool(1)
+
+    if pressed and not wasPressed then
+        isOn = not isOn
+    end
+
+    wasPressed = pressed
+    output.setBool(1, isOn)
+end</code></pre><p><code>wasPressed</code> remembers last tick’s input. The state changes only on the transition from released to pressed, so holding the button does not toggle every tick.</p></article>
+        </div>
+      </section>
+      <section class="lua-section" id="debug">
+        <div><p class="section-label">04 / WHEN IT BREAKS</p><h2>Find the problem</h2></div>
+        <div class="lua-content"><div class="lua-debug-list"><p><b>Nothing changes?</b> Confirm the microcontroller is active, wires reach the right input/output nodes, and the channel numbers match.</p><p><b>The screen is blank?</b> Check the video connection and that code is inside <code>function onDraw()</code>. Try drawing one text label first.</p><p><b>A value is always zero?</b> Check that the source is connected to the right numbered input and uses the expected signal type: number or boolean.</p><p><b>Code stops working after an edit?</b> Check spelling, capitalization, and matching <code>end</code> statements. Temporarily remove recent changes until the last working version runs.</p><p><b>Screen elements are cut off?</b> Use <code>screen.getWidth()</code> and <code>screen.getHeight()</code> rather than assuming every monitor has identical dimensions.</p></div><div class="lua-note"><b>Debugging habit:</b> Test one input and one output first. Add calculations only after you can prove the signal reaches the script.</div></div>
+      </section>
+      <section class="lua-section" id="next">
+        <div><p class="section-label">05 / KEEP LEARNING</p><h2>Turn examples into systems</h2></div>
+        <div class="lua-content"><p>Once the basics work, try these in order: average a noisy sensor over several ticks, convert a compass reading into a heading display, add alarms with boolean outputs, then draw a multi-instrument dashboard. For bigger scripts, split repeated work into functions and keep related values in tables.</p><p>Change one part at a time and test the vehicle after each change. When a script behaves strangely, write down the channel, expected value, and actual value; that makes the bug much easier to locate.</p><div class="lua-resource"><b>API reference:</b> <a href="https://stormworks.fandom.com/wiki/Wiki/Guides/Lua/Exploring_the_Stormworks_Lua_API">Stormworks Wiki — Exploring the Lua API</a> for available functions and examples.</div></div>
+      </section>
+    </main>
+    <footer id="footer"><p><span>SG / END OF GUIDE</span> // Build something that floats.</p><p><a href="index.html">Back to the home page</a></p></footer>
+  </div>
+  <script src="stormworks-lua-sandbox.js" defer></script>
+</body>
+</html>
